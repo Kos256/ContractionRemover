@@ -9,6 +9,9 @@
     
 	<title>Contraction Remover</title>
     <style>
+		* {
+			font-family: "Kode Mono", serif;
+		}
         body {
             font-family: "Kode Mono", serif;
 		    font-optical-sizing: auto;
@@ -102,17 +105,48 @@
 
     <script>
         const contractions = {
-            "I'm": ["I am"], "I'll": ["I will"], "it'll": ["it will"], "It'll": ["It will"],
-            "he'll": ["he will"], "He'll": ["He will"], "he's": ["he is"], "He's": ["He is"],
-            "she'll": ["she will"], "She'll": ["She will"], "they'll": ["they will"], "They'll": ["They will"],
-            "she's": ["she is"], "She's": ["She is"], "they're": ["they are"], "They're": ["They are"],
-            "who're": ["who are"], "Who're": ["Who are"], "can't": ["cannot"], "wouldn't": ["would not"],
-            "couldn't": ["could not"], "haven't": ["have not"], "won't": ["will not"], "isn't": ["is not"],
-            "it's": ["it is"], "I'd": ["I would", "I had"], "he'd": ["he would", "he had"], "He'd": ["He would", "He had"],
-            "she'd": ["she would", "she had"], "She'd": ["She would", "She had"], "that's": ["that is", "that has"],
-            "That's": ["That is", "That has"], "what's": ["what is", "what has"], "What's": ["What is", "What has"],
-            "here's": ["here is"], "Here's": ["Here is"], "thanks": ["thank you"], "Thanks": ["Thank you"]
-        };
+			"I'm": ["I am"],
+			"I'll": ["I will"],
+			"it'll": ["it will"],
+			"It'll": ["It will"],
+			"he'll": ["he will"],
+			"He'll": ["He will"],
+			"he's": ["he is"],
+			"He's": ["He is"],
+			"she'll": ["she will"],
+			"She'll": ["She will"],
+			"they'll": ["they will"],
+			"They'll": ["They will"],
+			"she's": ["she is"],
+			"She's": ["She is"],
+			"they're": ["they are"],
+			"They're": ["They are"],
+			"who're": ["who are"],
+			"Who're": ["Who are"],
+			"can't": ["cannot"],
+			"wouldn't": ["would not"],
+			"couldn't": ["could not"],
+			"haven't": ["have not"],
+			"won't": ["will not"],
+			"isn't": ["is not"],
+			"it's": ["it is"],
+			"I'd": ["I would", "I had"],
+			"he'd": ["he would", "he had"],
+			"He'd": ["He would", "He had"],
+			"she'd": ["she would", "she had"],
+			"She'd": ["She would", "She had"],
+			"that's": ["that is", "that has"],
+			"That's": ["That is", "That has"],
+			"what's": ["what is", "what has"],
+			"What's": ["What is", "What has"],
+			"here's": ["here is"],
+			"Here's": ["Here is"],
+			"thanks": ["thank you"],
+			"Thanks": ["Thank you"],
+			"niggas": ["what the fuck is wrong with you"]
+			
+		};
+
 
         function detectContractions() {
             let inputText = document.getElementById("textInput").value;
