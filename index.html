@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Jersey+10&family=Jersey+15&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kode+Mono:wght@400..700&family=Maven+Pro:wght@400..900&family=Overpass:ital,wght@0,100..900;1,100..900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    
+	<title>Contraction Remover</title>
+    <style>
+        body {
+            font-family: "Kode Mono", serif;
+		    font-optical-sizing: auto;
+			font-weight: <weight>;
+			font-style: normal;
+            background-color: #1F0000;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 800px;
+            margin: 20px;
+            padding: 40px;
+            border: 2px solid red;
+            background-color: #3A0000;
+        }
+		.warningNote {
+			width: 500px;
+			border: 1px solid red;
+			background-color: #500;
+			margin: 20px 0 0 0;
+		}
+        textarea, .output {
+            width: 80%;
+            height: 150px;
+            padding: 10px;
+            border: 2px solid red;
+            background-color: #620000;
+            color: white;
+            font-size: 16px;
+            resize: none;
+        }
+		#textInput::placeholder {
+			color: #a00;
+		}
+        .output {
+            height: 180px;
+            overflow-y: auto;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        button {
+            background-color: #590000;
+            color: red;
+            border: 2px solid red;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+            width: 26%;
+        }
+        button:hover {
+            background-color: #FF3700;
+        }
+        .highlight {
+            color: cyan;
+            text-decoration: underline;
+        }
+        .checkbox-container {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+	<center>
+		<div style="font-size: 16px; color: red; text-align: left; width:100%;"><i>2025 - Kosain</i></div>
+		<div class="container">
+			<h2>Contraction Remover</h2>
+			<textarea id="textInput" placeholder="Enter text here..."></textarea>
+			<div class="checkbox-container">
+				<input type="checkbox" id="highlightCheckbox" checked> <label for="highlightCheckbox">Highlight replaced</label>
+			</div>
+			<button onclick="detectContractions()">Detect</button>
+			<button onclick="replaceContractions()">Detect + Remove</button>
+			<button onclick="copyToClipboard()">Copy Output</button>
+			<div id="textOutput" class="output"></div>
+			
+			<div class="warningNote">
+				<p><strong>Note! </strong>This tool can struggle with some contractions like "that's". This is because "that's" can be expanded to either "that is" or "that has" and it can't decide.</p>
+			</div>
+		</div>
+		
+		
+	</center>
+	
+	
+
+    <script>
+        const contractions = {
+            "I'm": ["I am"], "I'll": ["I will"], "it'll": ["it will"], "It'll": ["It will"],
+            "he'll": ["he will"], "He'll": ["He will"], "he's": ["he is"], "He's": ["He is"],
+            "she'll": ["she will"], "She'll": ["She will"], "they'll": ["they will"], "They'll": ["They will"],
+            "she's": ["she is"], "She's": ["She is"], "they're": ["they are"], "They're": ["They are"],
+            "who're": ["who are"], "Who're": ["Who are"], "can't": ["cannot"], "wouldn't": ["would not"],
+            "couldn't": ["could not"], "haven't": ["have not"], "won't": ["will not"], "isn't": ["is not"],
+            "it's": ["it is"], "I'd": ["I would", "I had"], "he'd": ["he would", "he had"], "He'd": ["He would", "He had"],
+            "she'd": ["she would", "she had"], "She'd": ["She would", "She had"], "that's": ["that is", "that has"],
+            "That's": ["That is", "That has"], "what's": ["what is", "what has"], "What's": ["What is", "What has"],
+            "here's": ["here is"], "Here's": ["Here is"], "thanks": ["thank you"], "Thanks": ["Thank you"]
+        };
+
+        function detectContractions() {
+            let inputText = document.getElementById("textInput").value;
+            let words = inputText.split(/\s+/);
+            let output = words.map(word => {
+                let cleanWord = word.replace(/[.,!?]/g, ""); // Remove punctuation for matching
+                let punctuation = word.endsWith(cleanWord) ? "" : word.slice(-1);
+                
+                if (contractions[cleanWord]) {
+                    return `<span class="highlight">${word}</span>`;
+                }
+                return word;
+            }).join(" ");
+
+            document.getElementById("textOutput").innerHTML = output;
+        }
+
+        function replaceContractions() {
+            let inputText = document.getElementById("textInput").value;
+            let highlight = document.getElementById("highlightCheckbox").checked;
+            let words = inputText.split(/\s+/);
+            let output = words.map(word => {
+                let cleanWord = word.replace(/[.,!?]/g, ""); // Remove punctuation for matching
+                let punctuation = word.endsWith(cleanWord) ? "" : word.slice(-1);
+                
+                if (contractions[cleanWord]) {
+                    let replacedWord = contractions[cleanWord][0] + punctuation;
+                    return highlight ? `<span class="highlight">${replacedWord}</span>` : replacedWord;
+                }
+                return word;
+            }).join(" ");
+
+            document.getElementById("textOutput").innerHTML = output;
+        }
+
+        function copyToClipboard() {
+            let outputText = document.getElementById("textOutput").innerText;
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert("Copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy:", err);
+            });
+        }
+    </script>
+
+</body>
+</html>
