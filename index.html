@@ -12,6 +12,9 @@
 		* {
 			font-family: "Kode Mono", serif;
 		}
+		a {
+			color: #0af
+		}
         body {
             font-family: "Kode Mono", serif;
 		    font-optical-sizing: auto;
@@ -97,6 +100,7 @@
 				<p><strong>Note! </strong>This tool can struggle with some contractions like "that's". This is because "that's" can be expanded to either "that is" or "that has" and it can't decide.</p>
 			</div>
 		</div>
+		<p style="text-align: right;">Any contractions that aren't being detected? <a href="mailto:kosainabro@gmail.com?subject=I%20found%20a%20contraction%20that%20won't%20expand!&body=While%20I%20used%20the%20contraction%20remover%20site,%20I%20found%20out%20that%20a%20word%20doesn't%20expand.%20The%20the%20word%20is:%20<Insert%20the%20contracted%20word%20here>.">Let me know</a>!</p>
 		
 		
 	</center>
@@ -107,42 +111,30 @@
         const contractions = {
 			"I'm": ["I am"],
 			"I'll": ["I will"],
-			"it'll": ["it will"],
-			"It'll": ["It will"],
-			"he'll": ["he will"],
-			"He'll": ["He will"],
-			"he's": ["he is"],
-			"He's": ["He is"],
-			"she'll": ["she will"],
-			"She'll": ["She will"],
-			"they'll": ["they will"],
-			"They'll": ["They will"],
-			"she's": ["she is"],
-			"She's": ["She is"],
-			"they're": ["they are"],
-			"They're": ["They are"],
-			"who're": ["who are"],
-			"Who're": ["Who are"],
+			"it'll": ["it will"], "It'll": ["It will"],
+			"he'll": ["he will"], "He'll": ["He will"],
+			"he's": ["he is"], "He's": ["He is"],
+			"she'll": ["she will"], "She'll": ["She will"],
+			"they'll": ["they will"], "They'll": ["They will"],
+			"she's": ["she is"], "She's": ["She is"],
+			"they're": ["they are"], "They're": ["They are"],
+			"who're": ["who are"], "Who're": ["Who are"],
 			"can't": ["cannot"],
-			"wouldn't": ["would not"],
-			"couldn't": ["could not"],
-			"haven't": ["have not"],
-			"won't": ["will not"],
-			"isn't": ["is not"],
-			"it's": ["it is"],
+			"don't": ["do not"], "Don't": ["Do not"],
+			"doesn't": ["does not"], "Doesn't": ["Does not"],
+			"wouldn't": ["would not"], "Wouldn't": ["Would not"], 
+			"couldn't": ["could not"], "Couldn't": ["Could not"],
+			"haven't": ["have not"], "Haven't": ["Have not"],
+			"won't": ["will not"], "Won't": ["Will not"],
+			"isn't": ["is not"], "Isn't": ["is not"],
+			"it's": ["it is"], "It's": ["It is"], 
 			"I'd": ["I would", "I had"],
-			"he'd": ["he would", "he had"],
-			"He'd": ["He would", "He had"],
-			"she'd": ["she would", "she had"],
-			"She'd": ["She would", "She had"],
-			"that's": ["that is", "that has"],
-			"That's": ["That is", "That has"],
-			"what's": ["what is", "what has"],
-			"What's": ["What is", "What has"],
-			"here's": ["here is"],
-			"Here's": ["Here is"],
-			"thanks": ["thank you"],
-			"Thanks": ["Thank you"]
+			"he'd": ["he would", "he had"], "He'd": ["He would", "He had"],
+			"she'd": ["she would", "she had"], "She'd": ["She would", "She had"],
+			"that's": ["that is", "that has"], "That's": ["That is", "That has"],
+			"what's": ["what is", "what has"], "What's": ["What is", "What has"],
+			"here's": ["here is"], "Here's": ["Here is"],
+			"thanks": ["thank you"], "Thanks": ["Thank you"]
 			
 		};
 
